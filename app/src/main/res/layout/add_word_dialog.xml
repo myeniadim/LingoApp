@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/etEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="İngilizce kelime" />
+
+    <EditText
+        android:id="@+id/etTurkish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Türkçe anlam" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ekle" />
+</LinearLayout>

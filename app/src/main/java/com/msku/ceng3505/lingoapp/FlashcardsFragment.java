@@ -1,12 +1,25 @@
 package com.msku.ceng3505.lingoapp;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +27,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class FlashcardsFragment extends Fragment {
+
+    private RecyclerView rvVocabs;
+    private VocabularyAdapter adapter;
+    private List<Vocabulary> vocabs;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +77,47 @@ public class FlashcardsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_flashcards, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        rvVocabs = view.findViewById(R.id.rvWords);
+        vocabs = new ArrayList<>();
+
+        adapter = new VocabularyAdapter(vocabs);
+        rvVocabs.setLayoutManager(new LinearLayoutManager(requireContext()));
+        rvVocabs.setAdapter(adapter);
+
+        ImageButton button = view.findViewById(R.id.imageButton);
+        button.setOnClickListener(v -> showAddVocabDialog());
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void showAddVocabDialog(){
+        Dialog dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.add_word_dialog);
+
+        EditText etEnglish = dialog.findViewById(R.id.etEnglish);
+        EditText etTurkish = dialog.findViewById(R.id.etTurkish);
+        Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
+
+        btnSubmit.setOnClickListener(view -> {
+            String english = etEnglish.getText().toString().trim();
+            String turkish = etTurkish.getText().toString().trim();
+
+            if (!english.isEmpty() && !turkish.isEmpty()) {
+                // Listeye ekle
+                Vocabulary newVocab = new Vocabulary(english, turkish);
+                vocabs.add(newVocab);
+
+                // Adapter'a bildir
+                adapter.notifyDataSetChanged();
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }
