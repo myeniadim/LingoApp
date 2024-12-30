@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FlashcardsFragment"
-    android:background="#FDF9F3">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Üst kısım: Yatay bir satırda TextView + Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Flashcards Fragment"
-        android:textSize="26dp"
-        android:fontFamily="@font/quicksandmedium"
-        android:layout_gravity="center" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@drawable/textview_border">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/quicksandmedium"
+            android:text="Flashcards"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:padding="8dp" />
+
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/blue"
+            app:srcCompat="@drawable/baseline_add_24" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWords"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp" />
+
+</LinearLayout>
