@@ -4,5 +4,11 @@
         <item name="itemIconTint">@color/nav_item_color_state</item>
         <item name="itemTextColor">@color/nav_item_color_state</item>
         <item name="itemBackground">@color/yellow</item>
+        <item name="itemTextAppearanceActive">@style/CustomTextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/CustomTextAppearance</item>
+    </style>
+    <style name="CustomTextAppearance" parent="TextAppearance.AppCompat.Caption">
+        <item name="fontFamily">@font/quicksandmedium</item>
+        <item name="android:textSize">14sp</item>
     </style>
 </resources>

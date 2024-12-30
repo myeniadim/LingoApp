@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Flashcards Fragment"
         android:textSize="26dp"
+        android:fontFamily="@font/quicksandmedium"
         android:layout_gravity="center" />
 
 </FrameLayout>

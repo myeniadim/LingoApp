@@ -5,13 +5,16 @@
         android:title="Sections"
         android:icon="@drawable/house_chimney_solid"
         android:id="@+id/sections"
+
         />
     <item
         android:title="Flashcards"
         android:icon="@drawable/diamond_solid"
-        android:id="@+id/flashcards"/>
+        android:id="@+id/flashcards"
+       />
     <item
         android:title="Profile"
         android:icon="@drawable/user_solid"
-        android:id="@+id/profile"/>
+        android:id="@+id/profile"
+       />
 </menu>
