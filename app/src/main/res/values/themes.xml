@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.LingoApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:fontFamily">@font/quicksandmedium</item>
+        <item name="backgroundColor">#FDF9F3</item>
     </style>
 
     <style name="Theme.LingoApp" parent="Base.Theme.LingoApp" />
+
 </resources>
