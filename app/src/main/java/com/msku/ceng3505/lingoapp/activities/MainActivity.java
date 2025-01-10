@@ -1,4 +1,4 @@
-package com.msku.ceng3505.lingoapp;
+package com.msku.ceng3505.lingoapp.activities;
 
 import android.os.Bundle;
 
@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.msku.ceng3505.lingoapp.fragments.FlashcardsFragment;
+import com.msku.ceng3505.lingoapp.fragments.ProfileFragment;
+import com.msku.ceng3505.lingoapp.R;
+import com.msku.ceng3505.lingoapp.fragments.SectionsFragment;
 import com.msku.ceng3505.lingoapp.databinding.ActivityMainBinding;
 
 

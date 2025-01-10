@@ -1,4 +1,4 @@
-package com.msku.ceng3505.lingoapp;
+package com.msku.ceng3505.lingoapp.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -16,6 +16,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.msku.ceng3505.lingoapp.R;
+import com.msku.ceng3505.lingoapp.models.Vocabulary;
+import com.msku.ceng3505.lingoapp.adapters.VocabularyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

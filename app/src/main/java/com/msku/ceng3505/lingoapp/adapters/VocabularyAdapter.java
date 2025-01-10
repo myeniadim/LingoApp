@@ -1,4 +1,4 @@
-package com.msku.ceng3505.lingoapp;
+package com.msku.ceng3505.lingoapp.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.msku.ceng3505.lingoapp.R;
+import com.msku.ceng3505.lingoapp.models.Vocabulary;
 
 import java.util.List;
 

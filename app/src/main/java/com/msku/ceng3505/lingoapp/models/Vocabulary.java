@@ -1,4 +1,4 @@
-package com.msku.ceng3505.lingoapp;
+package com.msku.ceng3505.lingoapp.models;
 
 public class Vocabulary {
     private String englishVocab;
