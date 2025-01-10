@@ -1,8 +1,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/blue" /> <!-- Arka plan rengi -->
+    <solid android:color="@color/blue" />
     <stroke
         android:width="2dp"
-        android:color="@color/black"/><!-- Çerçeve kalınlığı --><!-- Çerçeve rengi -->
+        android:color="@color/black"/>
     <padding
         android:left="8dp"
         android:top="8dp"
