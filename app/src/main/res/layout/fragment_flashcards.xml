@@ -28,14 +28,13 @@
             android:gravity="center"
             android:padding="8dp" />
 
-
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="48dp"
-            android:layout_marginEnd="10dp"
             android:layout_height="match_parent"
             android:background="@color/yellow"
             app:srcCompat="@drawable/baseline_add_24" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
