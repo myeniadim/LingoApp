@@ -75,6 +75,7 @@ public class FlashcardsFragment extends Fragment {
         rvVocabs.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvVocabs.setAdapter(adapter);
 
+
         ImageButton button = view.findViewById(R.id.imageButton);
         button.setOnClickListener(v -> showAddVocabDialog());
     }
@@ -94,7 +95,7 @@ public class FlashcardsFragment extends Fragment {
 
             if (!english.isEmpty() && !turkish.isEmpty()) {
 
-                Vocabulary newVocab = new Vocabulary(english, turkish);
+                Vocabulary newVocab = new Vocabulary(english, turkish, false);
                 vocabs.add(newVocab);
 
                 adapter.notifyDataSetChanged();

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,22 @@ public class VocabularyAdapter extends RecyclerView.Adapter<VocabularyAdapter.Vo
         Vocabulary vocabulary = vocabList.get(position);
         holder.tvEnglish.setText(vocabulary.getEnglishVocab());
         holder.tvTurkish.setText(vocabulary.getTurkishVocab());
+
+        holder.ivFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vocabulary.setFavorite(!vocabulary.getFavorite());
+                updateFavoriteIcon(holder.ivFav, vocabulary.getFavorite());
+            }
+        });
+    }
+
+    private void updateFavoriteIcon(ImageView imageView, boolean isFavorite){
+        if (isFavorite){
+            imageView.setImageResource(R.drawable.baseline_star_24);
+        }else{
+            imageView.setImageResource(R.drawable.baseline_star_outline_24);
+        }
     }
 
     @Override
@@ -50,11 +67,13 @@ public class VocabularyAdapter extends RecyclerView.Adapter<VocabularyAdapter.Vo
 
     static class VocabularyViewHolder extends RecyclerView.ViewHolder{
         TextView tvEnglish, tvTurkish;
+        ImageView ivFav;
 
         public VocabularyViewHolder(@NonNull View itemView){
             super(itemView);
             tvEnglish = itemView.findViewById(R.id.tvEnglishWord);
             tvTurkish = itemView.findViewById(R.id.tvTurkishWord);
+            ivFav = itemView.findViewById(R.id.ivFavorite);
         }
     }
 }
