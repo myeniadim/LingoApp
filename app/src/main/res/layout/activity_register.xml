@@ -4,11 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_height="match_parent"
     android:padding="25dp"
     android:theme="@style/Base.Theme.LingoApp"
     tools:context=".activities.RegisterActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/lingowthtext"
+        />
 
     <TextView
         android:text="Sign Up"
@@ -44,9 +51,16 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
     <Button
         android:id="@+id/btnRegister"
         android:text="Sign up"
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

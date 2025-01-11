@@ -4,14 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_height="match_parent"
     android:padding="25dp"
     android:theme="@style/Base.Theme.LingoApp"
     tools:context=".activities.LoginActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/lingowthtext"
+/>
+
     <TextView
-        android:text="Login"
+        android:text="Lingo App"
         android:textSize="50sp"
         android:gravity="center"
         android:layout_marginBottom="40dp"
@@ -44,12 +51,29 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:text="Login"
-        android:layout_marginTop="40dp"
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:text="Login" />
+
+    <TextView
+        android:text="Don't have an account? Sign up"
+        android:id="@+id/txtSignUp"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
