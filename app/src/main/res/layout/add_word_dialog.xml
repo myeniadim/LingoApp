@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
     android:orientation="vertical">
 
-    <EditText
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Add Vocabulary"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etEnglish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="İngilizce kelime" />
+        android:hint="English Vocabulary"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etTurkish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Türkçe anlam" />
-
+        android:hint="Turkish Meaning"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/btnSubmit"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ekle" />
+        android:text="Submit" />
 </LinearLayout>
