@@ -10,14 +10,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.msku.ceng3505.lingoapp.R;
+import com.msku.ceng3505.lingoapp.helpers.FlashcardsFirebaseHelper;
 import com.msku.ceng3505.lingoapp.models.Vocabulary;
 import com.msku.ceng3505.lingoapp.adapters.VocabularyAdapter;
 
@@ -30,6 +33,7 @@ public class FlashcardsFragment extends Fragment {
     private RecyclerView rvVocabs;
     private VocabularyAdapter adapter;
     private List<Vocabulary> vocabs;
+    private FlashcardsFirebaseHelper helper;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -69,12 +73,30 @@ public class FlashcardsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvVocabs = view.findViewById(R.id.rvWords);
+        rvVocabs.setLayoutManager(new LinearLayoutManager(requireContext()));
+        helper = new FlashcardsFirebaseHelper();
+
         vocabs = new ArrayList<>();
 
-        adapter = new VocabularyAdapter(vocabs);
-        rvVocabs.setLayoutManager(new LinearLayoutManager(requireContext()));
-        rvVocabs.setAdapter(adapter);
+        // Firestore'dan verileri çek ve RecyclerView'e aktar
+        helper.getAllVocabularies(new FlashcardsFirebaseHelper.FirestoreCallback<List<Vocabulary>>() {
+            @Override
+            public void onSuccess(List<Vocabulary> result) {
+                vocabs.clear();
+                vocabs.addAll(result);
+                if (adapter == null) {
+                    adapter = new VocabularyAdapter(vocabs);
+                    rvVocabs.setAdapter(adapter);
+                } else {
+                    adapter.notifyDataSetChanged();
+                }
+            }
 
+            @Override
+            public void onFailure(Exception e) {
+                Toast.makeText(requireContext(), "Failed to load vocabularies: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         ImageButton button = view.findViewById(R.id.imageButton);
         button.setOnClickListener(v -> showAddVocabDialog());
@@ -96,9 +118,20 @@ public class FlashcardsFragment extends Fragment {
             if (!english.isEmpty() && !turkish.isEmpty()) {
 
                 Vocabulary newVocab = new Vocabulary(english, turkish, false);
-                vocabs.add(newVocab);
 
-                adapter.notifyDataSetChanged();
+                helper.addVocabulary(newVocab, new FlashcardsFirebaseHelper.FirestoreCallback() {
+                    @Override
+                    public void onSuccess(Object result) {
+                        vocabs.add(newVocab);
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        System.err.println("Error fetching vocabulary: " + e.getMessage());
+                    }
+                });
+
 
                 dialog.dismiss();
             }

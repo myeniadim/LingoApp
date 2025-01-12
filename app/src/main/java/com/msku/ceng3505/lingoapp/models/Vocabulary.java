@@ -11,6 +11,11 @@ public class Vocabulary {
         this.isFavorite = isFavorite;
     }
 
+    public Vocabulary(){
+
+    }
+
+
     public String getEnglishVocab() {
         return englishVocab;
     }
