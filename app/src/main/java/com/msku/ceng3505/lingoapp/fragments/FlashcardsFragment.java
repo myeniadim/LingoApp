@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -98,8 +99,42 @@ public class FlashcardsFragment extends Fragment {
             }
         });
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                Vocabulary vocabToDelete = vocabs.get(position);
+
+
+                helper.deleteVocabulary(vocabToDelete.getDocId(), new FlashcardsFirebaseHelper.FirestoreCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void result) {
+                        vocabs.remove(position);
+                        adapter.notifyItemRemoved(position);
+                        Toast.makeText(requireContext(), "Vocabulary deleted", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        adapter.notifyItemChanged(position);
+                        Toast.makeText(requireContext(), "Failed to delete vocabulary: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        });
+
+        itemTouchHelper.attachToRecyclerView(rvVocabs);
+
         ImageButton button = view.findViewById(R.id.imageButton);
         button.setOnClickListener(v -> showAddVocabDialog());
+
+
 
     }
 
