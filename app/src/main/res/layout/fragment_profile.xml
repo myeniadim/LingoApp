@@ -24,17 +24,77 @@
             android:layout_weight="1"
             android:text="Profile"
             android:textStyle="bold"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:gravity="center"
-            android:padding="8dp" />
+            android:layout_gravity="center"
+            android:textColor="#333" />
 
         <ImageButton
             android:id="@+id/imageButtonSettings"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:background="@color/yellow"
-            app:srcCompat="@drawable/baseline_settings_24" />
-
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/baseline_settings_24"
+            android:contentDescription="Settings"
+            android:tint="#333" />
     </LinearLayout>
+
+    <!-- Profil Bölümü -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingVertical="20dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/human"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mert Yeniadım"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@myeniadim"
+            android:textSize="14sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Your Stats Başlığı -->
+    <TextView
+        android:id="@+id/your_stats_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Stats"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center" />
+
+
+
+    <!-- Çıkış Butonu -->
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="12dp" />
 
 </LinearLayout>
