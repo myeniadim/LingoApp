@@ -1,5 +1,7 @@
 package com.msku.ceng3505.lingoapp.helpers;
 
+import android.util.Pair;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -25,7 +27,7 @@ public class FlashcardsFirebaseHelper {
                 .collection("vocabulary")
                 .add(vocabulary)
                 .addOnSuccessListener(documentReference -> {
-
+                    vocabulary.setDocId(documentReference.getId());
                     callback.onSuccess(vocabulary);
                 })
                 .addOnFailureListener(e -> {
@@ -50,6 +52,29 @@ public class FlashcardsFirebaseHelper {
                 })
                 .addOnFailureListener(callback::onFailure);
     }
+
+
+    public void updateVocabulary(String docId, Vocabulary updatedVocabulary, FirestoreCallback<Void> callback) {
+        db.collection("users")
+                .document(userId)
+                .collection("vocabulary")
+                .document(docId)
+                .set(updatedVocabulary)
+                .addOnSuccessListener(aVoid -> callback.onSuccess(null))
+                .addOnFailureListener(callback::onFailure);
+    }
+
+    public void deleteVocabulary(String docId, FirestoreCallback<Void> callback) {
+        db.collection("users")
+                .document(userId)
+                .collection("vocabulary")
+                .document(docId)
+                .delete()
+                .addOnSuccessListener(aVoid -> callback.onSuccess(null))
+                .addOnFailureListener(callback::onFailure);
+    }
+
+
 
     public interface FirestoreCallback<T> {
         void onSuccess(T result);

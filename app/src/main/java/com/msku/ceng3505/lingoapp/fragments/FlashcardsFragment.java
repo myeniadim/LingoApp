@@ -78,7 +78,7 @@ public class FlashcardsFragment extends Fragment {
 
         vocabs = new ArrayList<>();
 
-        // Firestore'dan verileri çek ve RecyclerView'e aktar
+
         helper.getAllVocabularies(new FlashcardsFirebaseHelper.FirestoreCallback<List<Vocabulary>>() {
             @Override
             public void onSuccess(List<Vocabulary> result) {
@@ -100,6 +100,7 @@ public class FlashcardsFragment extends Fragment {
 
         ImageButton button = view.findViewById(R.id.imageButton);
         button.setOnClickListener(v -> showAddVocabDialog());
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -117,13 +118,23 @@ public class FlashcardsFragment extends Fragment {
 
             if (!english.isEmpty() && !turkish.isEmpty()) {
 
-                Vocabulary newVocab = new Vocabulary(english, turkish, false);
+                Vocabulary newVocab = new Vocabulary(english, turkish, false, null);
 
                 helper.addVocabulary(newVocab, new FlashcardsFirebaseHelper.FirestoreCallback() {
                     @Override
                     public void onSuccess(Object result) {
-                        vocabs.add(newVocab);
-                        adapter.notifyDataSetChanged();
+                        helper.updateVocabulary(newVocab.getDocId(), newVocab, new FlashcardsFirebaseHelper.FirestoreCallback<Void>() {
+                            @Override
+                            public void onSuccess(Void result) {
+                                vocabs.add(newVocab);
+                                adapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onFailure(Exception e) {
+                                Log.d("TAG", "Error while updating: " + e.getMessage());
+                            }
+                        });
                     }
 
                     @Override
@@ -131,7 +142,6 @@ public class FlashcardsFragment extends Fragment {
                         System.err.println("Error fetching vocabulary: " + e.getMessage());
                     }
                 });
-
 
                 dialog.dismiss();
             }

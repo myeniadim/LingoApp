@@ -1,6 +1,7 @@
 package com.msku.ceng3505.lingoapp.adapters;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.msku.ceng3505.lingoapp.R;
+import com.msku.ceng3505.lingoapp.helpers.FlashcardsFirebaseHelper;
 import com.msku.ceng3505.lingoapp.models.Vocabulary;
 
 import java.util.List;
@@ -36,12 +38,25 @@ public class VocabularyAdapter extends RecyclerView.Adapter<VocabularyAdapter.Vo
         Vocabulary vocabulary = vocabList.get(position);
         holder.tvEnglish.setText(vocabulary.getEnglishVocab());
         holder.tvTurkish.setText(vocabulary.getTurkishVocab());
+        FlashcardsFirebaseHelper helper = new FlashcardsFirebaseHelper();
+
+        updateFavoriteIcon(holder.ivFav, vocabulary.getFavorite());
 
         holder.ivFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 vocabulary.setFavorite(!vocabulary.getFavorite());
-                updateFavoriteIcon(holder.ivFav, vocabulary.getFavorite());
+                helper.updateVocabulary(vocabulary.getDocId(), vocabulary, new FlashcardsFirebaseHelper.FirestoreCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void result) {
+                        updateFavoriteIcon(holder.ivFav, vocabulary.getFavorite());
+                    }
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.d("TAG", "Error while updating: " + e.getMessage());
+                    }
+                });
+
             }
         });
     }
