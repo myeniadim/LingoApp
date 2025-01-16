@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/resultTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Section Result"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/resultCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_below="@id/header"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/resultScoreTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Score: 80%"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/resutCorrectAnswersTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Correct Answers: 8"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/resultWrongAnswersTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wrong Answers: 2"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp" />
+            <TextView
+                android:id="@+id/resultSuccessfullStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="STATUS : SUCCESFULL" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <RelativeLayout
+        android:id="@+id/resultFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/resultBtnBackHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go Back Home"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#6200EE"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+</RelativeLayout>

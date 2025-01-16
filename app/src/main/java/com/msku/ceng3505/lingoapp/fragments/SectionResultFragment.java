@@ -1,28 +1,21 @@
 package com.msku.ceng3505.lingoapp.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.msku.ceng3505.lingoapp.R;
-import com.msku.ceng3505.lingoapp.activities.SectionActivity;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SectionsFragment#newInstance} factory method to
+ * Use the {@link SectionResultFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SectionsFragment extends Fragment {
-
-    private Button deneme;
+public class SectionResultFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +26,7 @@ public class SectionsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SectionsFragment() {
+    public SectionResultFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +36,11 @@ public class SectionsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SectionsFragment.
+     * @return A new instance of fragment SectionResultFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SectionsFragment newInstance(String param1, String param2) {
-        SectionsFragment fragment = new SectionsFragment();
+    public static SectionResultFragment newInstance(String param1, String param2) {
+        SectionResultFragment fragment = new SectionResultFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,16 +61,6 @@ public class SectionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sections, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        deneme = view.findViewById(R.id.deneme);
-        deneme.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), SectionActivity.class);
-            startActivity(intent);
-        });
+        return inflater.inflate(R.layout.fragment_section_result, container, false);
     }
 }
