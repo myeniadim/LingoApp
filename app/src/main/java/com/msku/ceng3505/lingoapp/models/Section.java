@@ -1,9 +1,10 @@
 package com.msku.ceng3505.lingoapp.models;
 
+
 import java.io.Serializable;
 import java.util.List;
 
-public class Section implements Serializable{
+public class Section implements Serializable {
     private String sectionId;
     private String title;
     private String difficultyLevel;

@@ -26,15 +26,15 @@ public class ReadingFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_READING = "arg_reading";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_READINGHEADER = "arg_readingheader";
 
     // TODO: Rename and change types of parameters
     private String reading;
-    private String mParam2;
+    private String readingHeader;
 
     private TextView pageTv;
 
-    public ReadingFragment(String reading) {
+    public ReadingFragment(String reading, String readingHeader) {
         // Required empty public constructor
     }
 
@@ -47,10 +47,11 @@ public class ReadingFragment extends Fragment {
      * @return A new instance of fragment ReadingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReadingFragment newInstance(String reading) {
-        ReadingFragment fragment = new ReadingFragment(reading);
+    public static ReadingFragment newInstance(String reading, String readingHeader) {
+        ReadingFragment fragment = new ReadingFragment(reading, readingHeader);
         Bundle args = new Bundle();
         args.putString(ARG_READING, reading);
+        args.putString(ARG_READINGHEADER, readingHeader);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,6 +61,7 @@ public class ReadingFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             reading = getArguments().getString(ARG_READING);
+            readingHeader = getArguments().getString(ARG_READINGHEADER);
         }
     }
 
@@ -75,7 +77,10 @@ public class ReadingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView textView = view.findViewById(R.id.content);
+        TextView header = view.findViewById(R.id.subtitle);
         Button btnNext = view.findViewById(R.id.btnNext);
+
+        header.setText(readingHeader);
 
         pageTv = view.findViewById(R.id.page_indicator);
 

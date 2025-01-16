@@ -13,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.msku.ceng3505.lingoapp.R;
 import com.msku.ceng3505.lingoapp.activities.SectionActivity;
+import com.msku.ceng3505.lingoapp.activities.SectionDetailActivity;
 import com.msku.ceng3505.lingoapp.adapters.SectionAdapter;
 import com.msku.ceng3505.lingoapp.models.Section;
 
@@ -89,13 +91,19 @@ public class SectionsFragment extends Fragment {
 
         sections = new ArrayList<>();
 
-        // Test veya örnek veri ekleyebilirsiniz.
         sections.add(new Section("Section 1", "Colors", "Easy", "asdad", "asaafs", null));
+        sections.add(new Section("Section 3", "Colors", "Easy", "asdad", "asaafs", null));
+        sections.add(new Section("Section 2", "Colors", "Easy", "asdad", "asaafs", null));
 
-
-        // Adapter oluşturuluyor ve RecyclerView'a atanıyor.
         SectionAdapter sectionAdapter = new SectionAdapter(sections);
         rvSections.setAdapter(sectionAdapter);
+
+        sectionAdapter.setOnItemClickListener(section -> {
+            Intent intent = new Intent(getActivity(), SectionDetailActivity.class);
+            intent.putExtra("section", section); // Serializable nesneyi ekle
+            startActivity(intent);
+        });
+
     }
 
 }

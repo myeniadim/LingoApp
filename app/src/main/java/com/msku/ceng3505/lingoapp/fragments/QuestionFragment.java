@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.msku.ceng3505.lingoapp.R;
 import com.msku.ceng3505.lingoapp.activities.SectionActivity;
 import com.msku.ceng3505.lingoapp.models.Question;
+import com.msku.ceng3505.lingoapp.models.Section;
 
 import java.io.Serializable;
 
@@ -28,8 +29,10 @@ public class QuestionFragment extends Fragment {
 
     private static final String ARG_QUESTION = "arg_question";
     private static final String ARG_POSITION = "arg_position";
+
     private Question question;
     private int position;
+
 
 
     private TextView questionTv;
@@ -41,6 +44,7 @@ public class QuestionFragment extends Fragment {
     private CardView optionCv3;
     private TextView progMessage;
     private CardView progCard;
+    private TextView title;
 
     private TextView pageTv;
 
@@ -100,6 +104,8 @@ public class QuestionFragment extends Fragment {
         progCard = view.findViewById(R.id.progressCard);
 
         pageTv = view.findViewById(R.id.page_indicator);
+
+        title = view.findViewById(R.id.questionTitle);
 
         questionTv.setText(question.getQuestion());
 

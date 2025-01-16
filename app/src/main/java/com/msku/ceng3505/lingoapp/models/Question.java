@@ -3,11 +3,13 @@ package com.msku.ceng3505.lingoapp.models;
 import java.io.Serializable;
 
 public class Question implements Serializable {
+    private String questionId;
     private String question;
     private String[] options;
     private String answer;
 
-    public Question(String question, String[] options, String answer) {
+    public Question(String questionId, String question, String[] options, String answer) {
+        this.questionId = questionId;
         this.question = question;
         this.options = options;
         this.answer = answer;

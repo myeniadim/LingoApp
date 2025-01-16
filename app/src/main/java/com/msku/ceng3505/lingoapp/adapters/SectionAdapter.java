@@ -1,5 +1,6 @@
 package com.msku.ceng3505.lingoapp.adapters;
 
+import android.location.GnssAntennaInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,14 @@ import java.util.List;
 public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionViewHolder> {
 
     private List<Section> sectionList;
+    private OnItemClickListener listener;
 
     public SectionAdapter(List<Section> sectionList) {
         this.sectionList = sectionList;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,6 +40,12 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
         holder.title.setText(section.getSectionId());
         holder.subtitle.setText(section.getTitle());
         holder.level.setText(section.getDifficultyLevel());
+
+        holder.itemView.setOnClickListener(view -> {
+            if (listener != null){
+                listener.onItemClick(section);
+            }
+        });
     }
 
     @Override
@@ -50,6 +62,9 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
             subtitle = itemView.findViewById(R.id.item_subtitle);
             level = itemView.findViewById(R.id.item_level);
         }
+    }
 
+    public interface OnItemClickListener {
+        void onItemClick(Section section);
     }
 }
