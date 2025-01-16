@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,11 @@ import android.widget.Button;
 
 import com.msku.ceng3505.lingoapp.R;
 import com.msku.ceng3505.lingoapp.activities.SectionActivity;
+import com.msku.ceng3505.lingoapp.adapters.SectionAdapter;
+import com.msku.ceng3505.lingoapp.models.Section;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +29,9 @@ import com.msku.ceng3505.lingoapp.activities.SectionActivity;
  */
 public class SectionsFragment extends Fragment {
 
-    private Button deneme;
+    private RecyclerView rvSections;
+    private SectionAdapter adapter;
+    private List<Section> sections;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,10 +83,19 @@ public class SectionsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        deneme = view.findViewById(R.id.deneme);
-        deneme.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), SectionActivity.class);
-            startActivity(intent);
-        });
+
+        rvSections = view.findViewById(R.id.rvSections);
+        rvSections.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        sections = new ArrayList<>();
+
+        // Test veya örnek veri ekleyebilirsiniz.
+        sections.add(new Section("Section 1", "Colors", "Easy", "asdad", "asaafs", null));
+
+
+        // Adapter oluşturuluyor ve RecyclerView'a atanıyor.
+        SectionAdapter sectionAdapter = new SectionAdapter(sections);
+        rvSections.setAdapter(sectionAdapter);
     }
+
 }

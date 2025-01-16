@@ -12,14 +12,16 @@
         android:id="@+id/item_image"
         android:layout_width = "80dp"
         android:layout_height="80dp"
+        android:src="@drawable/lingowthtext"
+        android:layout_gravity="center_vertical"
         android:layout_marginEnd="8dp"
-        android:scaleType="centerCrop"
-        android:background="@drawable/image_placeholder"/>
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:padding="5dp"
         android:layout_marginStart="10dp"
         android:orientation="vertical">
 
@@ -32,7 +34,6 @@
             android:textSize="16sp"
             android:paddingBottom="4dp"/>
 
-
         <TextView
             android:id="@+id/item_subtitle"
             android:layout_width="wrap_content"
@@ -40,7 +41,6 @@
             android:text="Title: Meeting"
             android:textSize="14sp"
             android:paddingBottom="2dp"/>
-
 
         <TextView
             android:id="@+id/item_level"
@@ -50,14 +50,13 @@
             android:textSize="14sp"
             android:paddingBottom="4dp"/>
 
-
         <ProgressBar
             android:id="@+id/item_progress_bar"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:progress="10"
-            android:progressTint="@color/blue"
-            android:backgroundTint="@color/gray" />
+            android:progressTint="@color/yellow"
+            android:backgroundTint="@color/grey" />
     </LinearLayout>
 </LinearLayout>
