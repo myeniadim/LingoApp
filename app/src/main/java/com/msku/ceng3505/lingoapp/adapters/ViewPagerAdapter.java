@@ -19,27 +19,29 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     private Fragment introFragment;
     private String reading;
     private String readingHeader;
+    private String title;
 
 
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity,
                             List<Question> questionList,
-                            Fragment introFragment, String reading, String readingHeader) {
+                            Fragment introFragment, String reading, String readingHeader, String title) {
         super(fragmentActivity);
         this.questionList = questionList;
         this.introFragment = introFragment;
         this.reading = reading;
         this.readingHeader = readingHeader;
+        this.title = title;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
         if (position == 0) {
-            return ReadingFragment.newInstance(reading, readingHeader);
+            return ReadingFragment.newInstance(reading, readingHeader, title);
         } else {
             int questionIndex = position - 1;
             Question question = questionList.get(questionIndex);
-            return QuestionFragment.newInstance(question, position);
+            return QuestionFragment.newInstance(question, position, title);
         }
     }
 

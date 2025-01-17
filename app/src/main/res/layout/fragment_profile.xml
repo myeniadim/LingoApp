@@ -60,7 +60,7 @@
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mert Yeniadım"
+            android:text=""
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -70,7 +70,7 @@
             android:id="@+id/profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@myeniadim"
+            android:text=""
             android:textSize="14sp"
             android:gravity="center" />
     </LinearLayout>

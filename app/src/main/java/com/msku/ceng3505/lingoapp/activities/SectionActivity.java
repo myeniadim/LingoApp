@@ -44,9 +44,9 @@ public class SectionActivity extends AppCompatActivity {
 
         questionList = section.getQuestions();
 
-        Fragment introFragment = new ReadingFragment(reading, section.getReadingHeader());
+        Fragment introFragment = new ReadingFragment(reading, section.getReadingHeader(), section.getTitle());
 
-        adapter = new ViewPagerAdapter(this, section.getQuestions(), introFragment, section.getReadingContent(), section.getReadingHeader());
+        adapter = new ViewPagerAdapter(this, section.getQuestions(), introFragment, section.getReadingContent(), section.getReadingHeader(), section.getTitle());
 
         viewPager.setAdapter(adapter);
 

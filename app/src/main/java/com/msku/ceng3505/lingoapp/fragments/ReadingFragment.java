@@ -27,14 +27,17 @@ public class ReadingFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_READING = "arg_reading";
     private static final String ARG_READINGHEADER = "arg_readingheader";
+    private static final String ARG_TITLE = "arg_title";
 
     // TODO: Rename and change types of parameters
     private String reading;
     private String readingHeader;
+    private String title;
 
     private TextView pageTv;
+    private TextView headerT;
 
-    public ReadingFragment(String reading, String readingHeader) {
+    public ReadingFragment(String reading, String readingHeader, String title) {
         // Required empty public constructor
     }
 
@@ -47,11 +50,12 @@ public class ReadingFragment extends Fragment {
      * @return A new instance of fragment ReadingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReadingFragment newInstance(String reading, String readingHeader) {
-        ReadingFragment fragment = new ReadingFragment(reading, readingHeader);
+    public static ReadingFragment newInstance(String reading, String readingHeader, String title) {
+        ReadingFragment fragment = new ReadingFragment(reading, readingHeader, title);
         Bundle args = new Bundle();
         args.putString(ARG_READING, reading);
         args.putString(ARG_READINGHEADER, readingHeader);
+        args.putString(ARG_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,6 +66,7 @@ public class ReadingFragment extends Fragment {
         if (getArguments() != null) {
             reading = getArguments().getString(ARG_READING);
             readingHeader = getArguments().getString(ARG_READINGHEADER);
+            title = getArguments().getString(ARG_TITLE);
         }
     }
 
@@ -83,11 +88,14 @@ public class ReadingFragment extends Fragment {
         header.setText(readingHeader);
 
         pageTv = view.findViewById(R.id.page_indicator);
+        headerT = view.findViewById(R.id.readingTitle);
 
         SectionActivity sectionActivity = (SectionActivity) requireActivity();
 
         int totalPages = sectionActivity.getTotalPages();
         int currentPage = 1;
+
+        headerT.setText(title);
 
         pageTv.setText(currentPage + "/" + totalPages + " Pages");
 

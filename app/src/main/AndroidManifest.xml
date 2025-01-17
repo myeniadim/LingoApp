@@ -15,6 +15,9 @@
         android:theme="@style/Theme.LingoApp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.SectionResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SectionDetailActivity"
             android:exported="false" />
         <activity
