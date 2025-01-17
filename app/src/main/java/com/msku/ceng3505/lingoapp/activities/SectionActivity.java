@@ -42,8 +42,7 @@ public class SectionActivity extends AppCompatActivity {
         section = (Section) intent.getSerializableExtra("section");
 
 
-        questionList = new ArrayList<>();
-        loadSampleQuestions();
+        questionList = section.getQuestions();
 
         Fragment introFragment = new ReadingFragment(reading, section.getReadingHeader());
 
@@ -54,25 +53,6 @@ public class SectionActivity extends AppCompatActivity {
     }
 
 
-    private void loadSampleQuestions() {
-        String q1 = "Cumhuriyet hangi yıl ilan edildi?";
-        String[] opt1 = {"1919", "1920", "1923"};
-        questionList.add(new Question("question1", q1, opt1, "1923"));
-
-        String q2 = "Hangisi bir programlama dili değildir?";
-        String[] opt2 = {"Java", "Python", "HTML"};
-        questionList.add(new Question("question2", q2, opt2, "Java"));
-
-        String q3 = "Hangisi Ege Bölgesi'ndedir?";
-        String[] opt3 = {"Ankara", "İzmir", "Kayseri"};
-        questionList.add(new Question("question3", q3, opt3, "İzmir"));
-
-        String q4 = "Hangisi Ege Bölgesi'ndedir?";
-        String[] opt4 = {"Ankara", "İzmir", "Kayseri"};
-        questionList.add(new Question("question4", q4, opt4, "İzmir"));
-
-        section.setQuestions(questionList);
-    }
 
     public void goToNextQuestion() {
         int currentItem = viewPager.getCurrentItem();
