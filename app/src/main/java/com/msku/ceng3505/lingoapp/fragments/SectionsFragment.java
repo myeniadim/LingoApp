@@ -1,14 +1,29 @@
 package com.msku.ceng3505.lingoapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.msku.ceng3505.lingoapp.R;
+import com.msku.ceng3505.lingoapp.activities.SectionDetailActivity;
+import com.msku.ceng3505.lingoapp.adapters.SectionAdapter;
+import com.msku.ceng3505.lingoapp.helpers.FlashcardsFirebaseHelper;
+import com.msku.ceng3505.lingoapp.helpers.SectionsFirebaseHelper;
+import com.msku.ceng3505.lingoapp.models.Section;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +31,11 @@ import com.msku.ceng3505.lingoapp.R;
  * create an instance of this fragment.
  */
 public class SectionsFragment extends Fragment {
+
+    private RecyclerView rvSections;
+    private SectionAdapter adapter;
+    private List<Section> sections;
+    private SectionsFirebaseHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +80,45 @@ public class SectionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sections, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        rvSections = view.findViewById(R.id.rvSections);
+        rvSections.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        helper = new SectionsFirebaseHelper();
+
+        sections = new ArrayList<>();
+
+        helper.getAllSections(new FlashcardsFirebaseHelper.FirestoreCallback<List<Section>>() {
+            @Override
+            public void onSuccess(List<Section> result) {
+                sections.clear();
+                sections.addAll(result);
+                if (adapter == null){
+                    adapter = new SectionAdapter(sections);
+                    rvSections.setAdapter(adapter);
+                    adapter.setOnItemClickListener(section -> {
+                        Log.d("MERT", section.getTitle());
+                        Intent intent = new Intent(getActivity(), SectionDetailActivity.class);
+                        intent.putExtra("section", section);
+                        startActivity(intent);
+                    });
+                }else {
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Toast.makeText(requireContext(), "Failed to load sections: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }

@@ -40,17 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -67,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         regBtn = findViewById(R.id.btnRegister);
 
         progressBar = findViewById(R.id.progressBar);
-
 
 
         regBtn.setOnClickListener(new View.OnClickListener() {

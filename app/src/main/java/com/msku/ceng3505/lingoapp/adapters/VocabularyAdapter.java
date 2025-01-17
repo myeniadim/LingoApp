@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,24 +43,33 @@ public class VocabularyAdapter extends RecyclerView.Adapter<VocabularyAdapter.Vo
 
         updateFavoriteIcon(holder.ivFav, vocabulary.getFavorite());
 
-        holder.ivFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vocabulary.setFavorite(!vocabulary.getFavorite());
-                helper.updateVocabulary(vocabulary.getDocId(), vocabulary, new FlashcardsFirebaseHelper.FirestoreCallback<Void>() {
-                    @Override
-                    public void onSuccess(Void result) {
-                        updateFavoriteIcon(holder.ivFav, vocabulary.getFavorite());
-                    }
-                    @Override
-                    public void onFailure(Exception e) {
-                        Log.d("TAG", "Error while updating: " + e.getMessage());
-                    }
-                });
+        holder.ivFav.setOnClickListener(view -> {
+            vocabulary.setFavorite(!vocabulary.getFavorite());
 
-            }
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                    helper.updateVocabulary(vocabulary.getDocId(), vocabulary, new FlashcardsFirebaseHelper.FirestoreCallback<Void>() {
+                        @Override
+                        public void onSuccess(Void result) {
+                            holder.ivFav.post(() -> updateFavoriteIcon(holder.ivFav, vocabulary.getFavorite()));
+                            Toast.makeText(holder.itemView.getContext(),
+                                    "Favorite status updated successfully!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Exception e) {
+                            Log.d("TAG", "Error while updating: " + e.getMessage());
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    Log.e("ThreadError", "Thread interrupted: " + e.getMessage());
+                }
+            }).start();
         });
     }
+
 
     private void updateFavoriteIcon(ImageView imageView, boolean isFavorite){
         if (isFavorite){
