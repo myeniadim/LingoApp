@@ -60,10 +60,10 @@ public class SectionsFirebaseHelper {
                                                 }
                                                 section.setQuestions(questions);
 
-                                                // Tüm questions tamamlandığında section ekle
+
                                                 sections.add(section);
 
-                                                // Eğer tüm section ve questions tamamlandıysa callback'i çağır
+
                                                 if (sections.size() == querySnapshot.size()) {
                                                     callback.onSuccess(sections);
                                                 }

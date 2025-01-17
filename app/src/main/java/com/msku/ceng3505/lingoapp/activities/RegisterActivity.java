@@ -58,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
 
-
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

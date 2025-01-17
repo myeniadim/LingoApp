@@ -53,17 +53,6 @@ public class SectionActivity extends AppCompatActivity {
     }
 
 
-
-    public void goToNextQuestion() {
-        int currentItem = viewPager.getCurrentItem();
-
-        if (currentItem < questionList.size() - 1) {
-            viewPager.setCurrentItem(currentItem + 1, true);
-        } else {
-            Toast.makeText(this, "Tüm soruları tamamladınız!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     public int getTotalPages() {
         return adapter.getItemCount();
     }
