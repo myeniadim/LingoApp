@@ -148,8 +148,7 @@ public class QuestionFragment extends Fragment {
         }else{
             btnNext.setText("Finish");
             btnNext.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), SectionResultActivity.class);
-                startActivity(intent);
+                sectionActivity.changeActivity();
             });
         }
 
@@ -161,10 +160,14 @@ public class QuestionFragment extends Fragment {
     }
 
     private void handleOptionClick(CardView selectedOption, TextView selectedTextView, String correctAnswer, CardView... allOptions) {
+        SectionActivity sectionActivity = (SectionActivity) requireActivity();
+
         if (correctAnswer.equals(String.valueOf(selectedTextView.getText()))) {
+            sectionActivity.increaseCorrect();
             selectedOption.setCardBackgroundColor(Color.parseColor("#50EB66"));
             progMessage.setText("True!");
         } else {
+            sectionActivity.increaseIncorrect();
             selectedOption.setCardBackgroundColor(Color.parseColor("#eb5066"));
             progMessage.setText("False!");
         }

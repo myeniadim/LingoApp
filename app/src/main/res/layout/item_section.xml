@@ -50,13 +50,5 @@
             android:textSize="14sp"
             android:paddingBottom="4dp"/>
 
-        <ProgressBar
-            android:id="@+id/item_progress_bar"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:progress="10"
-            android:progressTint="@color/yellow"
-            android:backgroundTint="@color/grey" />
     </LinearLayout>
 </LinearLayout>

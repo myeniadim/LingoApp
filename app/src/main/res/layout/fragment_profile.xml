@@ -30,15 +30,6 @@
             android:layout_gravity="center"
             android:textColor="#333" />
 
-        <ImageButton
-            android:id="@+id/imageButtonSettings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:srcCompat="@drawable/baseline_settings_24"
-            android:contentDescription="Settings"
-            android:layout_gravity="center"
-            android:tint="#333" />
     </LinearLayout>
 
 
@@ -76,15 +67,7 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/your_stats_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Stats"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"
-        android:layout_gravity="center" />
+
 
     <Button
         android:id="@+id/logout_button"

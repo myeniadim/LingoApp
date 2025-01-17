@@ -79,6 +79,7 @@ public class SectionsFirebaseHelper {
                 });
     }
 
+
     public interface FirestoreCallback<T> {
         void onSuccess(T result);
 

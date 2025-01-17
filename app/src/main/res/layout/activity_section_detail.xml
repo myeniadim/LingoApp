@@ -68,7 +68,7 @@
             android:id="@+id/tvUserProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Previous Progress: 40%"
+            android:text=""
             android:textSize="16sp"
             android:padding="4dp"
             />

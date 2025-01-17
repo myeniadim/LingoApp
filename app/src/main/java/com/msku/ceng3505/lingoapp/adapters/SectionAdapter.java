@@ -37,7 +37,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
     @Override
     public void onBindViewHolder(@NonNull SectionAdapter.SectionViewHolder holder, int position){
         Section section = sectionList.get(position);
-        holder.title.setText(section.getSectionId());
+        holder.title.setText(String.valueOf(section.getSectionId()).toUpperCase());
         holder.subtitle.setText(section.getTitle());
         holder.level.setText(section.getDifficultyLevel());
 
